@@ -4,10 +4,17 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+        
+
+            UniversityManager um = new UniversityManager();
+
+            um.FemaleStudents();
+
+
+
         }
 
-        class UniversityManager
+         class UniversityManager
         {
             public List<University> universities;
             public List<Student> students;
@@ -25,13 +32,37 @@
                 //Adding students
                 students.Add(new Student { Id = 1, Name = "Carla", Gender = "female", Age = 17, UniversityId = 1 });
                 students.Add(new Student { Id = 2, Name = "Tom", Gender = "male", Age = 21, UniversityId = 1 });
-                students.Add(new Student { Id = 2, Name = "Leyla", Gender = "female", Age = 22, UniversityId = 2 });
-                students.Add(new Student { Id = 2, Name = "Peter", Gender = "male", Age = 31, UniversityId = 2 });
-                students.Add(new Student { Id = 2, Name = "Gale", Gender = "male", Age = 23, UniversityId = 1 });
+                students.Add(new Student { Id = 3, Name = "Leyla", Gender = "female", Age = 22, UniversityId = 2 });
+                students.Add(new Student { Id = 4, Name = "Peter", Gender = "male", Age = 31, UniversityId = 2 });
+                students.Add(new Student { Id = 5, Name = "Gale", Gender = "male", Age = 23, UniversityId = 1 });
 
 
 
             }
+
+            public void FemaleStudents()
+            {
+                IEnumerable<Student> femaleStudents = from student in students where student.Gender == "female" select student;
+
+                foreach (var student in femaleStudents)
+                {
+                    student.Print();
+                }
+            }
+
+            public void MalesStudents()
+            {
+                IEnumerable<Student> maleStudents =
+                    from student in students where student.Gender == "male" select student;
+
+                foreach (var student in maleStudents)
+                {
+                    student.Print();
+                }
+            }
+
+        }
+
         class University
         {
             public int Id { get; set; }
